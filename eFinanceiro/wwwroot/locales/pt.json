@@ -1,0 +1,39 @@
+{
+  "app": {
+    "name": "PREDITIVO"
+  },
+  "nav": {
+    "dashboard": "Painéis de Controle",
+    "graphs": "Gráficos",
+    "mailbox": "Caixa de Entrada",
+    "widgets": "Widgets",
+    "metrics": "Métricas",
+    "forms": "Formulários",
+    "appviews": "Visualizações de Aplicativos",
+    "otherpages": "Outras Páginas",
+    "uielements": "Elementos de Interface",
+    "miscellaneous": "Diversos",
+    "gridoptions": "Opções de Grade",
+    "tables": "Tabelas",
+    "commerce": "Comércio Eletrônico",
+    "gallery": "Galeria",
+    "menulevels": "Níveis de Menu",
+    "animations": "Animações",
+    "landing": "Página Inicial",
+    "layouts": "Layouts",
+    "package": "Pacotes"
+  },
+  "body": {
+    "welcome": "Bem-vinda, Amelia"
+  },
+  "topnav": {
+    "messageinfo": "Você tem 42 mensagens e 6 notificações.",
+    "search": "Pesquisar algo...",
+    "logout": "Sair",
+    "welcometext": "Bem-vindo ao Tema Admin do PREDITIVO.",
+    "language": "Idioma"
+  },
+  "demo": {
+    "text1": "Internacionalização (às vezes abreviada como \"I18N\", que significa \"I - dezoito letras - N\") é o processo de planejar e implementar produtos e serviços para que possam ser facilmente adaptados a idiomas e culturas locais específicas, um processo chamado localização. O processo de internacionalização às vezes é chamado de habilitação de tradução ou localização."
+  }
+}
