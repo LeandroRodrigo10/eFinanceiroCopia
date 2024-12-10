@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/eFinanceiro/bin/Debug
+/eFinanceiro/obj
+/Sample/bin/Debug
+/Sample/obj
