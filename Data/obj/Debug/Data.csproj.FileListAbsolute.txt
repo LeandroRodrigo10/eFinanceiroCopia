@@ -1,0 +1,12 @@
+C:\Users\Leandro\source\repos\eFinanceiro\Data\bin\Debug\Data.dll.config
+C:\Users\Leandro\source\repos\eFinanceiro\Data\bin\Debug\Data.dll
+C:\Users\Leandro\source\repos\eFinanceiro\Data\bin\Debug\Data.pdb
+C:\Users\Leandro\source\repos\eFinanceiro\Data\bin\Debug\EntityFramework.dll
+C:\Users\Leandro\source\repos\eFinanceiro\Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Leandro\source\repos\eFinanceiro\Data\bin\Debug\EntityFramework.xml
+C:\Users\Leandro\source\repos\eFinanceiro\Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Leandro\source\repos\eFinanceiro\Data\obj\Debug\Data.csproj.AssemblyReference.cache
+C:\Users\Leandro\source\repos\eFinanceiro\Data\obj\Debug\Data.csproj.CoreCompileInputs.cache
+C:\Users\Leandro\source\repos\eFinanceiro\Data\obj\Debug\Data.csproj.Up2Date
+C:\Users\Leandro\source\repos\eFinanceiro\Data\obj\Debug\Data.dll
+C:\Users\Leandro\source\repos\eFinanceiro\Data\obj\Debug\Data.pdb
