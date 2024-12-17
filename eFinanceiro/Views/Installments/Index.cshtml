@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Data.Installment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistrationUserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistrationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DesactivationUserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DesactivationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusInstallment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationUserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DesactivationUserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DesactivationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Invoice.InvoiceID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusInstallment.StatusInstallmentID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.InstallmentID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.InstallmentID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.InstallmentID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

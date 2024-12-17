@@ -1,0 +1,69 @@
+﻿@model Data.Partner
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Partner</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PartnerID" />
+            <div class="form-group">
+                <label asp-for="SubscriptionID" class="control-label"></label>
+                <select asp-for="SubscriptionID" class="form-control" asp-items="ViewBag.SubscriptionID"></select>
+                <span asp-validation-for="SubscriptionID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankID" class="control-label"></label>
+                <select asp-for="BankID" class="form-control" asp-items="ViewBag.BankID"></select>
+                <span asp-validation-for="BankID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PartnerName" class="control-label"></label>
+                <input asp-for="PartnerName" class="form-control" />
+                <span asp-validation-for="PartnerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegistrationUserID" class="control-label"></label>
+                <input asp-for="RegistrationUserID" class="form-control" />
+                <span asp-validation-for="RegistrationUserID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegistrationDate" class="control-label"></label>
+                <input asp-for="RegistrationDate" class="form-control" />
+                <span asp-validation-for="RegistrationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DesactivationUserID" class="control-label"></label>
+                <input asp-for="DesactivationUserID" class="form-control" />
+                <span asp-validation-for="DesactivationUserID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DesactivationDate" class="control-label"></label>
+                <input asp-for="DesactivationDate" class="form-control" />
+                <span asp-validation-for="DesactivationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

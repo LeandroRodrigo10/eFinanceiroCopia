@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Data.Reconciliation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReconciliationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistrationUserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistrationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DesactivationUserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DesactivationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BankStatement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusReconciliation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReconciliationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationUserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DesactivationUserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DesactivationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BankStatement.BankStatementID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusReconciliation.StatusReconciliationID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ReconciliationID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ReconciliationID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ReconciliationID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
