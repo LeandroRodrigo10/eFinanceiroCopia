@@ -1,0 +1,1024 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Data.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="BankID" />
+          </Key>
+          <Property Name="BankID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BankCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="BankName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime2" Precision="3" Nullable="false" />
+          <Property Name="DesactivationUserID" Type="uniqueidentifier" />
+          <Property Name="DesactivationDate" Type="datetime2" Precision="3" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BankAccount">
+          <Key>
+            <PropertyRef Name="BankAccountID" />
+          </Key>
+          <Property Name="BankAccountID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SubscriptionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BankID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Agency" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AccountNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="InitialBalance" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime2" Precision="3" Nullable="false" />
+          <Property Name="DesactivationUserID" Type="uniqueidentifier" />
+          <Property Name="DesactivationDate" Type="datetime2" Precision="3" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BankStatement">
+          <Key>
+            <PropertyRef Name="BankStatementID" />
+          </Key>
+          <Property Name="BankStatementID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BankAccountID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TransactionTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime2" Precision="3" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime2" Precision="3" Nullable="false" />
+          <Property Name="DesactivationUserID" Type="uniqueidentifier" />
+          <Property Name="DesactivationDate" Type="datetime2" Precision="3" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Installment">
+          <Key>
+            <PropertyRef Name="InstallmentID" />
+          </Key>
+          <Property Name="InstallmentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InvoiceID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StatusInstallmentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DueDate" Type="datetime2" Precision="3" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime2" Precision="3" Nullable="false" />
+          <Property Name="DesactivationUserID" Type="uniqueidentifier" />
+          <Property Name="DesactivationDate" Type="datetime2" Precision="3" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+          </Key>
+          <Property Name="InvoiceID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartnerID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StatusInvoiceID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime2" Precision="3" Nullable="false" />
+          <Property Name="DesactivationUserID" Type="uniqueidentifier" />
+          <Property Name="DesactivationDate" Type="datetime2" Precision="3" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="PartnerID" />
+          </Key>
+          <Property Name="PartnerID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SubscriptionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BankID" Type="uniqueidentifier" />
+          <Property Name="PartnerName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime2" Precision="3" Nullable="false" />
+          <Property Name="DesactivationUserID" Type="uniqueidentifier" />
+          <Property Name="DesactivationDate" Type="datetime2" Precision="3" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reconciliation">
+          <Key>
+            <PropertyRef Name="ReconciliationID" />
+          </Key>
+          <Property Name="ReconciliationID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BankStatementID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StatusReconciliationID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReconciliationDate" Type="datetime2" Precision="3" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime2" Precision="3" Nullable="false" />
+          <Property Name="DesactivationUserID" Type="uniqueidentifier" />
+          <Property Name="DesactivationDate" Type="datetime2" Precision="3" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusInstallment">
+          <Key>
+            <PropertyRef Name="StatusInstallmentID" />
+          </Key>
+          <Property Name="StatusInstallmentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime2" Precision="3" Nullable="false" />
+          <Property Name="Ordering" Type="smallint" />
+          <Property Name="DesactivationUserID" Type="uniqueidentifier" />
+          <Property Name="DesactivationDate" Type="datetime2" Precision="3" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusInvoice">
+          <Key>
+            <PropertyRef Name="StatusInvoiceID" />
+          </Key>
+          <Property Name="StatusInvoiceID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime2" Precision="3" Nullable="false" />
+          <Property Name="Ordering" Type="smallint" />
+          <Property Name="DesactivationUserID" Type="uniqueidentifier" />
+          <Property Name="DesactivationDate" Type="datetime2" Precision="3" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusReconciliation">
+          <Key>
+            <PropertyRef Name="StatusReconciliationID" />
+          </Key>
+          <Property Name="StatusReconciliationID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime2" Precision="3" Nullable="false" />
+          <Property Name="Ordering" Type="smallint" />
+          <Property Name="DesactivationUserID" Type="uniqueidentifier" />
+          <Property Name="DesactivationDate" Type="datetime2" Precision="3" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subscription">
+          <Key>
+            <PropertyRef Name="SubscriptionID" />
+          </Key>
+          <Property Name="SubscriptionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime2" Precision="3" Nullable="false" />
+          <Property Name="DesactivationUserID" Type="uniqueidentifier" />
+          <Property Name="DesactivationDate" Type="datetime2" Precision="3" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="TransactionTypeID" />
+          </Key>
+          <Property Name="TransactionTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime2" Precision="3" Nullable="false" />
+          <Property Name="Ordering" Type="smallint" />
+          <Property Name="DesactivationUserID" Type="uniqueidentifier" />
+          <Property Name="DesactivationDate" Type="datetime2" Precision="3" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__BankAccou__BankI__6A50C1DA">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
+          <End Role="BankAccount" Type="Self.BankAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="BankID" />
+            </Principal>
+            <Dependent Role="BankAccount">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BankAccou__Subsc__6B44E613">
+          <End Role="Subscription" Type="Self.Subscription" Multiplicity="1" />
+          <End Role="BankAccount" Type="Self.BankAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscription">
+              <PropertyRef Name="SubscriptionID" />
+            </Principal>
+            <Dependent Role="BankAccount">
+              <PropertyRef Name="SubscriptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BankState__BankA__70099B30">
+          <End Role="BankAccount" Type="Self.BankAccount" Multiplicity="1" />
+          <End Role="BankStatement" Type="Self.BankStatement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankAccount">
+              <PropertyRef Name="BankAccountID" />
+            </Principal>
+            <Dependent Role="BankStatement">
+              <PropertyRef Name="BankAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BankState__Trans__70FDBF69">
+          <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="1" />
+          <End Role="BankStatement" Type="Self.BankStatement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="TransactionTypeID" />
+            </Principal>
+            <Dependent Role="BankStatement">
+              <PropertyRef Name="TransactionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Installme__Invoi__63A3C44B">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="Installment" Type="Self.Installment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceID" />
+            </Principal>
+            <Dependent Role="Installment">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Installme__Statu__6497E884">
+          <End Role="StatusInstallment" Type="Self.StatusInstallment" Multiplicity="1" />
+          <End Role="Installment" Type="Self.Installment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusInstallment">
+              <PropertyRef Name="StatusInstallmentID" />
+            </Principal>
+            <Dependent Role="Installment">
+              <PropertyRef Name="StatusInstallmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invoice__Partner__5CF6C6BC">
+          <End Role="Partner" Type="Self.Partner" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partner">
+              <PropertyRef Name="PartnerID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="PartnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invoice__StatusI__5DEAEAF5">
+          <End Role="StatusInvoice" Type="Self.StatusInvoice" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusInvoice">
+              <PropertyRef Name="StatusInvoiceID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="StatusInvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Partner__BankID__5649C92D">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="Partner" Type="Self.Partner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="BankID" />
+            </Principal>
+            <Dependent Role="Partner">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Partner__Subscri__573DED66">
+          <End Role="Subscription" Type="Self.Subscription" Multiplicity="1" />
+          <End Role="Partner" Type="Self.Partner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscription">
+              <PropertyRef Name="SubscriptionID" />
+            </Principal>
+            <Dependent Role="Partner">
+              <PropertyRef Name="SubscriptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reconcili__BankS__76B698BF">
+          <End Role="BankStatement" Type="Self.BankStatement" Multiplicity="1" />
+          <End Role="Reconciliation" Type="Self.Reconciliation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankStatement">
+              <PropertyRef Name="BankStatementID" />
+            </Principal>
+            <Dependent Role="Reconciliation">
+              <PropertyRef Name="BankStatementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reconcili__Statu__77AABCF8">
+          <End Role="StatusReconciliation" Type="Self.StatusReconciliation" Multiplicity="1" />
+          <End Role="Reconciliation" Type="Self.Reconciliation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusReconciliation">
+              <PropertyRef Name="StatusReconciliationID" />
+            </Principal>
+            <Dependent Role="Reconciliation">
+              <PropertyRef Name="StatusReconciliationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataStoreContainer">
+          <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankAccount" EntityType="Self.BankAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankStatement" EntityType="Self.BankStatement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Installment" EntityType="Self.Installment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Partner" EntityType="Self.Partner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reconciliation" EntityType="Self.Reconciliation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusInstallment" EntityType="Self.StatusInstallment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusInvoice" EntityType="Self.StatusInvoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusReconciliation" EntityType="Self.StatusReconciliation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subscription" EntityType="Self.Subscription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BankAccou__BankI__6A50C1DA" Association="Self.FK__BankAccou__BankI__6A50C1DA">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="BankAccount" EntitySet="BankAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BankAccou__Subsc__6B44E613" Association="Self.FK__BankAccou__Subsc__6B44E613">
+            <End Role="Subscription" EntitySet="Subscription" />
+            <End Role="BankAccount" EntitySet="BankAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BankState__BankA__70099B30" Association="Self.FK__BankState__BankA__70099B30">
+            <End Role="BankAccount" EntitySet="BankAccount" />
+            <End Role="BankStatement" EntitySet="BankStatement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BankState__Trans__70FDBF69" Association="Self.FK__BankState__Trans__70FDBF69">
+            <End Role="TransactionType" EntitySet="TransactionType" />
+            <End Role="BankStatement" EntitySet="BankStatement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Installme__Invoi__63A3C44B" Association="Self.FK__Installme__Invoi__63A3C44B">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="Installment" EntitySet="Installment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Installme__Statu__6497E884" Association="Self.FK__Installme__Statu__6497E884">
+            <End Role="StatusInstallment" EntitySet="StatusInstallment" />
+            <End Role="Installment" EntitySet="Installment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invoice__Partner__5CF6C6BC" Association="Self.FK__Invoice__Partner__5CF6C6BC">
+            <End Role="Partner" EntitySet="Partner" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invoice__StatusI__5DEAEAF5" Association="Self.FK__Invoice__StatusI__5DEAEAF5">
+            <End Role="StatusInvoice" EntitySet="StatusInvoice" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Partner__BankID__5649C92D" Association="Self.FK__Partner__BankID__5649C92D">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="Partner" EntitySet="Partner" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Partner__Subscri__573DED66" Association="Self.FK__Partner__Subscri__573DED66">
+            <End Role="Subscription" EntitySet="Subscription" />
+            <End Role="Partner" EntitySet="Partner" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reconcili__BankS__76B698BF" Association="Self.FK__Reconcili__BankS__76B698BF">
+            <End Role="BankStatement" EntitySet="BankStatement" />
+            <End Role="Reconciliation" EntitySet="Reconciliation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reconcili__Statu__77AABCF8" Association="Self.FK__Reconcili__Statu__77AABCF8">
+            <End Role="StatusReconciliation" EntitySet="StatusReconciliation" />
+            <End Role="Reconciliation" EntitySet="Reconciliation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Data" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="BankID" />
+          </Key>
+          <Property Name="BankID" Type="Guid" Nullable="false" />
+          <Property Name="BankCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BankName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DesactivationUserID" Type="Guid" />
+          <Property Name="DesactivationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BankAccount" Relationship="Self.FK__BankAccou__BankI__6A50C1DA" FromRole="Bank" ToRole="BankAccount" />
+          <NavigationProperty Name="Partner" Relationship="Self.FK__Partner__BankID__5649C92D" FromRole="Bank" ToRole="Partner" />
+        </EntityType>
+        <EntityType Name="BankAccount">
+          <Key>
+            <PropertyRef Name="BankAccountID" />
+          </Key>
+          <Property Name="BankAccountID" Type="Guid" Nullable="false" />
+          <Property Name="SubscriptionID" Type="Guid" Nullable="false" />
+          <Property Name="BankID" Type="Guid" Nullable="false" />
+          <Property Name="Agency" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AccountNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InitialBalance" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DesactivationUserID" Type="Guid" />
+          <Property Name="DesactivationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Bank" Relationship="Self.FK__BankAccou__BankI__6A50C1DA" FromRole="BankAccount" ToRole="Bank" />
+          <NavigationProperty Name="Subscription" Relationship="Self.FK__BankAccou__Subsc__6B44E613" FromRole="BankAccount" ToRole="Subscription" />
+          <NavigationProperty Name="BankStatement" Relationship="Self.FK__BankState__BankA__70099B30" FromRole="BankAccount" ToRole="BankStatement" />
+        </EntityType>
+        <EntityType Name="BankStatement">
+          <Key>
+            <PropertyRef Name="BankStatementID" />
+          </Key>
+          <Property Name="BankStatementID" Type="Guid" Nullable="false" />
+          <Property Name="BankAccountID" Type="Guid" Nullable="false" />
+          <Property Name="TransactionTypeID" Type="Guid" Nullable="false" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DesactivationUserID" Type="Guid" />
+          <Property Name="DesactivationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BankAccount" Relationship="Self.FK__BankState__BankA__70099B30" FromRole="BankStatement" ToRole="BankAccount" />
+          <NavigationProperty Name="TransactionType" Relationship="Self.FK__BankState__Trans__70FDBF69" FromRole="BankStatement" ToRole="TransactionType" />
+          <NavigationProperty Name="Reconciliation" Relationship="Self.FK__Reconcili__BankS__76B698BF" FromRole="BankStatement" ToRole="Reconciliation" />
+        </EntityType>
+        <EntityType Name="Installment">
+          <Key>
+            <PropertyRef Name="InstallmentID" />
+          </Key>
+          <Property Name="InstallmentID" Type="Guid" Nullable="false" />
+          <Property Name="InvoiceID" Type="Guid" Nullable="false" />
+          <Property Name="StatusInstallmentID" Type="Guid" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RegistrationUserID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DesactivationUserID" Type="Guid" />
+          <Property Name="DesactivationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK__Installme__Invoi__63A3C44B" FromRole="Installment" ToRole="Invoice" />
+          <NavigationProperty Name="StatusInstallment" Relationship="Self.FK__Installme__Statu__6497E884" FromRole="Installment" ToRole="StatusInstallment" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+          </Key>
+          <Property Name="InvoiceID" Type="Guid" Nullable="false" />
+          <Property Name="PartnerID" Type="Guid" Nullable="false" />
+          <Property Name="StatusInvoiceID" Type="Guid" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DesactivationUserID" Type="Guid" />
+          <Property Name="DesactivationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Installment" Relationship="Self.FK__Installme__Invoi__63A3C44B" FromRole="Invoice" ToRole="Installment" />
+          <NavigationProperty Name="Partner" Relationship="Self.FK__Invoice__Partner__5CF6C6BC" FromRole="Invoice" ToRole="Partner" />
+          <NavigationProperty Name="StatusInvoice" Relationship="Self.FK__Invoice__StatusI__5DEAEAF5" FromRole="Invoice" ToRole="StatusInvoice" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="PartnerID" />
+          </Key>
+          <Property Name="PartnerID" Type="Guid" Nullable="false" />
+          <Property Name="SubscriptionID" Type="Guid" Nullable="false" />
+          <Property Name="BankID" Type="Guid" />
+          <Property Name="PartnerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DesactivationUserID" Type="Guid" />
+          <Property Name="DesactivationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Bank" Relationship="Self.FK__Partner__BankID__5649C92D" FromRole="Partner" ToRole="Bank" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__Partner__5CF6C6BC" FromRole="Partner" ToRole="Invoice" />
+          <NavigationProperty Name="Subscription" Relationship="Self.FK__Partner__Subscri__573DED66" FromRole="Partner" ToRole="Subscription" />
+        </EntityType>
+        <EntityType Name="Reconciliation">
+          <Key>
+            <PropertyRef Name="ReconciliationID" />
+          </Key>
+          <Property Name="ReconciliationID" Type="Guid" Nullable="false" />
+          <Property Name="BankStatementID" Type="Guid" Nullable="false" />
+          <Property Name="StatusReconciliationID" Type="Guid" Nullable="false" />
+          <Property Name="ReconciliationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DesactivationUserID" Type="Guid" />
+          <Property Name="DesactivationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BankStatement" Relationship="Self.FK__Reconcili__BankS__76B698BF" FromRole="Reconciliation" ToRole="BankStatement" />
+          <NavigationProperty Name="StatusReconciliation" Relationship="Self.FK__Reconcili__Statu__77AABCF8" FromRole="Reconciliation" ToRole="StatusReconciliation" />
+        </EntityType>
+        <EntityType Name="StatusInstallment">
+          <Key>
+            <PropertyRef Name="StatusInstallmentID" />
+          </Key>
+          <Property Name="StatusInstallmentID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ordering" Type="Int16" />
+          <Property Name="DesactivationUserID" Type="Guid" />
+          <Property Name="DesactivationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Installment" Relationship="Self.FK__Installme__Statu__6497E884" FromRole="StatusInstallment" ToRole="Installment" />
+        </EntityType>
+        <EntityType Name="StatusInvoice">
+          <Key>
+            <PropertyRef Name="StatusInvoiceID" />
+          </Key>
+          <Property Name="StatusInvoiceID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ordering" Type="Int16" />
+          <Property Name="DesactivationUserID" Type="Guid" />
+          <Property Name="DesactivationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__StatusI__5DEAEAF5" FromRole="StatusInvoice" ToRole="Invoice" />
+        </EntityType>
+        <EntityType Name="StatusReconciliation">
+          <Key>
+            <PropertyRef Name="StatusReconciliationID" />
+          </Key>
+          <Property Name="StatusReconciliationID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ordering" Type="Int16" />
+          <Property Name="DesactivationUserID" Type="Guid" />
+          <Property Name="DesactivationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Reconciliation" Relationship="Self.FK__Reconcili__Statu__77AABCF8" FromRole="StatusReconciliation" ToRole="Reconciliation" />
+        </EntityType>
+        <EntityType Name="Subscription">
+          <Key>
+            <PropertyRef Name="SubscriptionID" />
+          </Key>
+          <Property Name="SubscriptionID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DesactivationUserID" Type="Guid" />
+          <Property Name="DesactivationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BankAccount" Relationship="Self.FK__BankAccou__Subsc__6B44E613" FromRole="Subscription" ToRole="BankAccount" />
+          <NavigationProperty Name="Partner" Relationship="Self.FK__Partner__Subscri__573DED66" FromRole="Subscription" ToRole="Partner" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="TransactionTypeID" />
+          </Key>
+          <Property Name="TransactionTypeID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RegistrationUserID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ordering" Type="Int16" />
+          <Property Name="DesactivationUserID" Type="Guid" />
+          <Property Name="DesactivationDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BankStatement" Relationship="Self.FK__BankState__Trans__70FDBF69" FromRole="TransactionType" ToRole="BankStatement" />
+        </EntityType>
+        <Association Name="FK__BankAccou__BankI__6A50C1DA">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
+          <End Role="BankAccount" Type="Self.BankAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="BankID" />
+            </Principal>
+            <Dependent Role="BankAccount">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Partner__BankID__5649C92D">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="Partner" Type="Self.Partner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="BankID" />
+            </Principal>
+            <Dependent Role="Partner">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BankAccou__Subsc__6B44E613">
+          <End Role="Subscription" Type="Self.Subscription" Multiplicity="1" />
+          <End Role="BankAccount" Type="Self.BankAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscription">
+              <PropertyRef Name="SubscriptionID" />
+            </Principal>
+            <Dependent Role="BankAccount">
+              <PropertyRef Name="SubscriptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BankState__BankA__70099B30">
+          <End Role="BankAccount" Type="Self.BankAccount" Multiplicity="1" />
+          <End Role="BankStatement" Type="Self.BankStatement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankAccount">
+              <PropertyRef Name="BankAccountID" />
+            </Principal>
+            <Dependent Role="BankStatement">
+              <PropertyRef Name="BankAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BankState__Trans__70FDBF69">
+          <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="1" />
+          <End Role="BankStatement" Type="Self.BankStatement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="TransactionTypeID" />
+            </Principal>
+            <Dependent Role="BankStatement">
+              <PropertyRef Name="TransactionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reconcili__BankS__76B698BF">
+          <End Role="BankStatement" Type="Self.BankStatement" Multiplicity="1" />
+          <End Role="Reconciliation" Type="Self.Reconciliation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankStatement">
+              <PropertyRef Name="BankStatementID" />
+            </Principal>
+            <Dependent Role="Reconciliation">
+              <PropertyRef Name="BankStatementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Installme__Invoi__63A3C44B">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="Installment" Type="Self.Installment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceID" />
+            </Principal>
+            <Dependent Role="Installment">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Installme__Statu__6497E884">
+          <End Role="StatusInstallment" Type="Self.StatusInstallment" Multiplicity="1" />
+          <End Role="Installment" Type="Self.Installment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusInstallment">
+              <PropertyRef Name="StatusInstallmentID" />
+            </Principal>
+            <Dependent Role="Installment">
+              <PropertyRef Name="StatusInstallmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invoice__Partner__5CF6C6BC">
+          <End Role="Partner" Type="Self.Partner" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partner">
+              <PropertyRef Name="PartnerID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="PartnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invoice__StatusI__5DEAEAF5">
+          <End Role="StatusInvoice" Type="Self.StatusInvoice" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusInvoice">
+              <PropertyRef Name="StatusInvoiceID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="StatusInvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Partner__Subscri__573DED66">
+          <End Role="Subscription" Type="Self.Subscription" Multiplicity="1" />
+          <End Role="Partner" Type="Self.Partner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscription">
+              <PropertyRef Name="SubscriptionID" />
+            </Principal>
+            <Dependent Role="Partner">
+              <PropertyRef Name="SubscriptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reconcili__Statu__77AABCF8">
+          <End Role="StatusReconciliation" Type="Self.StatusReconciliation" Multiplicity="1" />
+          <End Role="Reconciliation" Type="Self.Reconciliation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusReconciliation">
+              <PropertyRef Name="StatusReconciliationID" />
+            </Principal>
+            <Dependent Role="Reconciliation">
+              <PropertyRef Name="StatusReconciliationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bank" EntityType="Self.Bank" />
+          <EntitySet Name="BankAccount" EntityType="Self.BankAccount" />
+          <EntitySet Name="BankStatement" EntityType="Self.BankStatement" />
+          <EntitySet Name="Installment" EntityType="Self.Installment" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" />
+          <EntitySet Name="Partner" EntityType="Self.Partner" />
+          <EntitySet Name="Reconciliation" EntityType="Self.Reconciliation" />
+          <EntitySet Name="StatusInstallment" EntityType="Self.StatusInstallment" />
+          <EntitySet Name="StatusInvoice" EntityType="Self.StatusInvoice" />
+          <EntitySet Name="StatusReconciliation" EntityType="Self.StatusReconciliation" />
+          <EntitySet Name="Subscription" EntityType="Self.Subscription" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TransactionType" EntityType="Self.TransactionType" />
+          <AssociationSet Name="FK__BankAccou__BankI__6A50C1DA" Association="Self.FK__BankAccou__BankI__6A50C1DA">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="BankAccount" EntitySet="BankAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Partner__BankID__5649C92D" Association="Self.FK__Partner__BankID__5649C92D">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="Partner" EntitySet="Partner" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BankAccou__Subsc__6B44E613" Association="Self.FK__BankAccou__Subsc__6B44E613">
+            <End Role="Subscription" EntitySet="Subscription" />
+            <End Role="BankAccount" EntitySet="BankAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BankState__BankA__70099B30" Association="Self.FK__BankState__BankA__70099B30">
+            <End Role="BankAccount" EntitySet="BankAccount" />
+            <End Role="BankStatement" EntitySet="BankStatement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BankState__Trans__70FDBF69" Association="Self.FK__BankState__Trans__70FDBF69">
+            <End Role="TransactionType" EntitySet="TransactionType" />
+            <End Role="BankStatement" EntitySet="BankStatement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reconcili__BankS__76B698BF" Association="Self.FK__Reconcili__BankS__76B698BF">
+            <End Role="BankStatement" EntitySet="BankStatement" />
+            <End Role="Reconciliation" EntitySet="Reconciliation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Installme__Invoi__63A3C44B" Association="Self.FK__Installme__Invoi__63A3C44B">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="Installment" EntitySet="Installment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Installme__Statu__6497E884" Association="Self.FK__Installme__Statu__6497E884">
+            <End Role="StatusInstallment" EntitySet="StatusInstallment" />
+            <End Role="Installment" EntitySet="Installment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invoice__Partner__5CF6C6BC" Association="Self.FK__Invoice__Partner__5CF6C6BC">
+            <End Role="Partner" EntitySet="Partner" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invoice__StatusI__5DEAEAF5" Association="Self.FK__Invoice__StatusI__5DEAEAF5">
+            <End Role="StatusInvoice" EntitySet="StatusInvoice" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Partner__Subscri__573DED66" Association="Self.FK__Partner__Subscri__573DED66">
+            <End Role="Subscription" EntitySet="Subscription" />
+            <End Role="Partner" EntitySet="Partner" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reconcili__Statu__77AABCF8" Association="Self.FK__Reconcili__Statu__77AABCF8">
+            <End Role="StatusReconciliation" EntitySet="StatusReconciliation" />
+            <End Role="Reconciliation" EntitySet="Reconciliation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataStoreContainer" CdmEntityContainer="DataEntities">
+          <EntitySetMapping Name="Bank">
+            <EntityTypeMapping TypeName="Data.Bank">
+              <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="BankCode" ColumnName="BankCode" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="RegistrationUserID" ColumnName="RegistrationUserID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="DesactivationUserID" ColumnName="DesactivationUserID" />
+                <ScalarProperty Name="DesactivationDate" ColumnName="DesactivationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankAccount">
+            <EntityTypeMapping TypeName="Data.BankAccount">
+              <MappingFragment StoreEntitySet="BankAccount">
+                <ScalarProperty Name="BankAccountID" ColumnName="BankAccountID" />
+                <ScalarProperty Name="SubscriptionID" ColumnName="SubscriptionID" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="Agency" ColumnName="Agency" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="InitialBalance" ColumnName="InitialBalance" />
+                <ScalarProperty Name="RegistrationUserID" ColumnName="RegistrationUserID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="DesactivationUserID" ColumnName="DesactivationUserID" />
+                <ScalarProperty Name="DesactivationDate" ColumnName="DesactivationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankStatement">
+            <EntityTypeMapping TypeName="Data.BankStatement">
+              <MappingFragment StoreEntitySet="BankStatement">
+                <ScalarProperty Name="BankStatementID" ColumnName="BankStatementID" />
+                <ScalarProperty Name="BankAccountID" ColumnName="BankAccountID" />
+                <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="RegistrationUserID" ColumnName="RegistrationUserID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="DesactivationUserID" ColumnName="DesactivationUserID" />
+                <ScalarProperty Name="DesactivationDate" ColumnName="DesactivationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Installment">
+            <EntityTypeMapping TypeName="Data.Installment">
+              <MappingFragment StoreEntitySet="Installment">
+                <ScalarProperty Name="InstallmentID" ColumnName="InstallmentID" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="StatusInstallmentID" ColumnName="StatusInstallmentID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="RegistrationUserID" ColumnName="RegistrationUserID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="DesactivationUserID" ColumnName="DesactivationUserID" />
+                <ScalarProperty Name="DesactivationDate" ColumnName="DesactivationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoice">
+            <EntityTypeMapping TypeName="Data.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+                <ScalarProperty Name="StatusInvoiceID" ColumnName="StatusInvoiceID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="RegistrationUserID" ColumnName="RegistrationUserID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="DesactivationUserID" ColumnName="DesactivationUserID" />
+                <ScalarProperty Name="DesactivationDate" ColumnName="DesactivationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partner">
+            <EntityTypeMapping TypeName="Data.Partner">
+              <MappingFragment StoreEntitySet="Partner">
+                <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+                <ScalarProperty Name="SubscriptionID" ColumnName="SubscriptionID" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="PartnerName" ColumnName="PartnerName" />
+                <ScalarProperty Name="RegistrationUserID" ColumnName="RegistrationUserID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="DesactivationUserID" ColumnName="DesactivationUserID" />
+                <ScalarProperty Name="DesactivationDate" ColumnName="DesactivationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reconciliation">
+            <EntityTypeMapping TypeName="Data.Reconciliation">
+              <MappingFragment StoreEntitySet="Reconciliation">
+                <ScalarProperty Name="ReconciliationID" ColumnName="ReconciliationID" />
+                <ScalarProperty Name="BankStatementID" ColumnName="BankStatementID" />
+                <ScalarProperty Name="StatusReconciliationID" ColumnName="StatusReconciliationID" />
+                <ScalarProperty Name="ReconciliationDate" ColumnName="ReconciliationDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="RegistrationUserID" ColumnName="RegistrationUserID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="DesactivationUserID" ColumnName="DesactivationUserID" />
+                <ScalarProperty Name="DesactivationDate" ColumnName="DesactivationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusInstallment">
+            <EntityTypeMapping TypeName="Data.StatusInstallment">
+              <MappingFragment StoreEntitySet="StatusInstallment">
+                <ScalarProperty Name="StatusInstallmentID" ColumnName="StatusInstallmentID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RegistrationUserID" ColumnName="RegistrationUserID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="Ordering" ColumnName="Ordering" />
+                <ScalarProperty Name="DesactivationUserID" ColumnName="DesactivationUserID" />
+                <ScalarProperty Name="DesactivationDate" ColumnName="DesactivationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusInvoice">
+            <EntityTypeMapping TypeName="Data.StatusInvoice">
+              <MappingFragment StoreEntitySet="StatusInvoice">
+                <ScalarProperty Name="StatusInvoiceID" ColumnName="StatusInvoiceID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RegistrationUserID" ColumnName="RegistrationUserID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="Ordering" ColumnName="Ordering" />
+                <ScalarProperty Name="DesactivationUserID" ColumnName="DesactivationUserID" />
+                <ScalarProperty Name="DesactivationDate" ColumnName="DesactivationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusReconciliation">
+            <EntityTypeMapping TypeName="Data.StatusReconciliation">
+              <MappingFragment StoreEntitySet="StatusReconciliation">
+                <ScalarProperty Name="StatusReconciliationID" ColumnName="StatusReconciliationID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RegistrationUserID" ColumnName="RegistrationUserID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="Ordering" ColumnName="Ordering" />
+                <ScalarProperty Name="DesactivationUserID" ColumnName="DesactivationUserID" />
+                <ScalarProperty Name="DesactivationDate" ColumnName="DesactivationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subscription">
+            <EntityTypeMapping TypeName="Data.Subscription">
+              <MappingFragment StoreEntitySet="Subscription">
+                <ScalarProperty Name="SubscriptionID" ColumnName="SubscriptionID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RegistrationUserID" ColumnName="RegistrationUserID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="DesactivationUserID" ColumnName="DesactivationUserID" />
+                <ScalarProperty Name="DesactivationDate" ColumnName="DesactivationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Data.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionType">
+            <EntityTypeMapping TypeName="Data.TransactionType">
+              <MappingFragment StoreEntitySet="TransactionType">
+                <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RegistrationUserID" ColumnName="RegistrationUserID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="Ordering" ColumnName="Ordering" />
+                <ScalarProperty Name="DesactivationUserID" ColumnName="DesactivationUserID" />
+                <ScalarProperty Name="DesactivationDate" ColumnName="DesactivationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
